@@ -1,10 +1,23 @@
+
+import { NgModule } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute,ParamMap, Router} from '@angular/router';
+import {ActivatedRoute,ParamMap, Router, RouterModule} from '@angular/router';
+
+
+
 
 @Component({
   selector: 'app-department-detail',
   template: `
   <p>you selected id : {{id}}</p>
+
+  <p>
+    <button (click)="showOverView()"></button>
+    <button (click)="showContact()"></button>
+  </p>
+
+  <router-outlet></router-outlet>
+
   <div>
     <a (click)="goPrevious()">Previous</a>  
     <a (click)="goNext()">Next</a>  
@@ -54,5 +67,12 @@ export class DepartmentDetailComponent implements OnInit {
     this.router.navigate(['../',{id: selectedId}],{relativeTo: this.route});
   }
   
-
+  showOverView()
+  {
+    this.router.navigate(['overview'],{relativeTo: this.route});
+  }
+  showContact()
+  {
+    this.router.navigate(['contact'],{relativeTo: this.route});
+  }
 }
